@@ -1,0 +1,8 @@
+- name: Build & Push Frontend Image
+  uses: docker/build-push-action@v4
+  with:
+    context: ./frontend
+    push: true
+    tags: ${{ secrets.DOCKER_USERNAME }}/inventory-frontend:latest
+    build-args: |
+      VITE_API_URL=${{ secrets.VITE_API_URL }}
