@@ -6,7 +6,11 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-  origin: 'https://inventory-app-brown-eta.vercel.app',
+  origin: [
+    'https://inventory-frontend-management.vercel.app',
+    'https://inventory-app-brown-eta.vercel.app', // URL lama tetap ada
+    'http://localhost:5173',                        // untuk development lokal
+  ],
   credentials: true
 }));
 app.use(express.json());
