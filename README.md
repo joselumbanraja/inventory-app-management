@@ -5,7 +5,7 @@ role-based access control, real-time stock tracking, and a complete
 DevOps pipeline.
 
 ## 🌐 Live Demo
-🔗 https://inventory-frontend-management.vercel.app
+🔗 https://frontend-inventory-blond.vercel.app/login
 
 | Role  | Email                        | Password |
 |-------|------------------------------|----------|
