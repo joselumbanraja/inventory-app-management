@@ -1,12 +1,13 @@
-FROM alpine:latest
+FROM node:18-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --production
+
+RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
