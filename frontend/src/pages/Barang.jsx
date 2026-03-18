@@ -33,8 +33,6 @@ export default function Barang() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
-
         try {
             const formData = new FormData();
             formData.append('nama', form.nama);
@@ -65,9 +63,8 @@ export default function Barang() {
             setEditId(null);
             setShowForm(false);
             fetchBarang();
-
         } catch (err) {
-            setError(err.response?.data?.message || 'Gagal menyimpan barang');
+            alert(err.response?.data?.message || 'Gagal menyimpan barang');
         }
     };
 
