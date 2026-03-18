@@ -3,15 +3,15 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# Terima VITE_API_URL dari build args
 ARG VITE_API_URL
 ENV VITE_API_URL=$VITE_API_URL
 
-RUN npm run build
+RUN npm run build 2>&1
 
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
