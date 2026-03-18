@@ -5,14 +5,25 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors({
+// Handle preflight requests
+app.options('*', cors({
   origin: [
     'https://inventory-frontend-management.vercel.app',
-    'https://inventory-app-brown-eta.vercel.app', // URL lama tetap ada
-    'http://localhost:5173',                        // untuk development lokal
+    'https://inventory-app-brown-eta.vercel.app',
+    'http://localhost:5173',
   ],
   credentials: true
 }));
+
+app.use(cors({
+  origin: [
+    'https://inventory-frontend-management.vercel.app',
+    'https://inventory-app-brown-eta.vercel.app',
+    'http://localhost:5173',
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Health check
@@ -27,7 +38,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth',      require('./routes/auth'));
 app.use('/api/barang',    require('./routes/barang'));
 app.use('/api/transaksi', require('./routes/transaksi'));
-app.use('/api/demo',      require('./routes/demo'));   // ← TAMBAH INI
+app.use('/api/demo',      require('./routes/demo'));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
