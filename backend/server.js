@@ -5,28 +5,10 @@ require('dotenv').config();
 
 const app = express();
 
-// Handle preflight requests
-app.options('*', cors({
-  origin: [
-    'https://inventory-frontend-management.vercel.app',
-    'https://inventory-app-brown-eta.vercel.app',
-    'http://localhost:5173',
-  ],
-  credentials: true
-}));
-
-app.use(cors({
-  origin: [
-    'https://inventory-frontend-management.vercel.app',
-    'https://inventory-app-brown-eta.vercel.app',
-    'http://localhost:5173',
-  ],
-  credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
